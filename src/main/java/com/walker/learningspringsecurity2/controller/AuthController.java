@@ -2,6 +2,7 @@ package com.walker.learningspringsecurity2.controller;
 
 import com.walker.learningspringsecurity2.entity.User;
 import com.walker.learningspringsecurity2.security.AuthToken;
+import com.walker.learningspringsecurity2.security.TokenValidation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<AuthToken> executeLogin(@RequestBody User user){
         if (user.getLogin().equals("walker") && user.getPassword().equals("admin123456")){
-            return ResponseEntity.ok(new AuthToken("*token-walker-123456"));
+            return ResponseEntity.ok(TokenValidation.encodeToken(user));
         }
         return ResponseEntity.status(403).build();
     }
