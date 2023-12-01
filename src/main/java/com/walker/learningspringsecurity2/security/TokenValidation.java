@@ -7,6 +7,9 @@ import org.springframework.security.core.Authentication;
 import java.util.Collections;
 
 public class TokenValidation {
+    public static AuthToken encodeToken(){
+        return null;
+    }
     public static Authentication decodetoken(HttpServletRequest httpServletRequest) throws Exception{ //Validação do acesso
         if (httpServletRequest.getHeader("Authorization").equals("Bearer *token-walker-123456")){ //Passando o token que criei para validação
             return new UsernamePasswordAuthenticationToken("user",null, Collections.emptyList()); //Retornando que o usuário está autenticado
